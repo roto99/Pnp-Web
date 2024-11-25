@@ -1,5 +1,6 @@
+const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
-const fileInput = document.getElementById("id");
+const fileInput = document.getElementById("file");
 const modeBtn = document.getElementById("mode-btn");
 const destroyBtn = document.getElementById("destroy-btn");
 const eraserBtn = document.getElementById("eraser-btn");
@@ -15,6 +16,7 @@ const CANVAS_HEIGHT = 800;
 canvas.width = 800;
 canvas.height = 800;
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round";
 let isPainting = false;
 let isFilling = false;
 
@@ -41,14 +43,12 @@ function onColorChange(event) {
     ctx.strokeStyle = event.target.value;
     ctx.fillStyle = event.target.value;
 }
-
 function onColorClick(event) {
     const colorValue = event.target.dataset.color;
     ctx.strokeStyle = colorValue;
     ctx.fillStyle = colorValue;
     color.value = colorValue;
 }
-
 function onModeClick() {
     if (isFilling) {
       isFilling = false;
@@ -63,18 +63,15 @@ function onModeClick() {
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     }
 }
-
 function onDestroyClick() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 }
-
 function onEraserClick(){
     ctx.strokeStyle = "white";
     isFilling = false;
     modeBtn.innerText = "Fill";
 }
-
 function onFileChange(event){
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
@@ -85,17 +82,24 @@ function onFileChange(event){
         fileInput.value = null;
     };
 }
-
 function onDoubleClick(event){
-    ctx.save(); 
     const text = textInput.value;
+    if(text !== ""){
+    ctx.save(); 
     ctx.lineWidth = 1;
-    ctx.font = "48px serif";
-    ctx.strokeText(text, event.offsetX, event.offsetY);
-    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.font = "68px serif";
+    ctx.strokeText(text, event.offsetX, event.offsetY); // 선만 있는 글자
+    ctx.fillText(text, event.offsetX, event.offsetY); // 채워진 글자
     ctx.restore();
+    }
 }
-
+function onSaveClick(){
+    const url = canvas.toDataURL();
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
 canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -114,3 +118,4 @@ destroyBtn.addEventListener("click", onDestroyClick);
 eraserBtn.addEventListener("click", onEraserClick);
 
 fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick);
