@@ -1,0 +1,112 @@
+@import "reset.css";
+
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* 연한 하늘색 배경 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 메인 프레임 */
+.frame {
+    width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 제목 스타일 */
+.name h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #4CAF50; /* 녹색 제목 */
+    margin: 0 0 20px;
+}
+
+/* 할 일 입력 필드와 추가 버튼 */
+.writeText {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.writeText input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.writeText button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.writeText button:hover {
+    background-color: #45a049;
+}
+
+/* 목록 스타일 */
+.contentList fieldset {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.contentList legend {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.contentList ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contentList li {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* 선택 버튼들 */
+.selectBtns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.selectBtns button {
+    flex: 1;
+    margin: 0 5px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 9px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.selectBtns button:hover {
+    background-color: #1976D2;
+}
